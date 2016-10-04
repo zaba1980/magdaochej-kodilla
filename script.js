@@ -1,5 +1,5 @@
-var computer = { name: ‘computer’, score: 0, pick: ’’ }; 
-var player = { name: ‘’, score: 0, pick: ’’ };
+var computer = { name: 'computer', score: 0, pick: '' }; 
+var player = { name: '', score: 0, pick: ''};
 var round = '0';
 
 function newGame() {
@@ -53,11 +53,11 @@ function checkResult() {
 		for(var i = 0; i < buttons.length; i++) { 
 		buttons[i].style.visibility = 'hidden';  
 	}
-};
 
-else if (player.pick === "rock") { 
+
+if (player.pick === "rock") { 
 	//if player chooses rock if (computer.pick === "scissors") { player.score++; gameResult = "Player wins!" } 
-	else if (computer.pick === "paper") { computer.score++; gameResult = "Computer wins!" } 
+	if (computer.pick === "paper") { computer.score++; gameResult = "Computer wins!" } 
 }
 if (player.pick === computer.pick) {gameResult = "tie!"} 
 else if (player.pick === "rock") {//if player chooses rock
@@ -73,8 +73,13 @@ else if (computer.pick === "rock") { computer.score++; gameResult = "Computer wi
 if ( (player.score >= 10) || (computer.score >=10) ) { 
 	//log the result 
 	if (player.score > computer.score) { 
-		document.getElementById("roundResult").innerHTML = "player wins the game!"; 
-} else { 
-	document.getElementById("roundResult").innerHTML = "computer wins the game!"; 
-}
+		document.getElementById("roundResult").innerHTML = "player wins the game!"} 
+		else { 
+	document.getElementById("roundResult").innerHTML = "computer wins the game!"}
+
  //hide buttons
+var buttons = document.getElementsByClassName("pick-button");
+  for(var i = 0; i < buttons.length; i++) {
+    buttons[i].style.visibility = 'hidden';
+  };
+}
