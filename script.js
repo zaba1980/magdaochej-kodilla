@@ -39,47 +39,38 @@ function computerPick() {
 	} 
 };
 
-function checkResult() { 
-	//Check if there is a tie 
-	var gameResult; 
-		if (player.pick === computer.pick) { 
-		gameResult = "tie!" 
-		} 
-	document.getElementById("computerPick").innerHTML = computer.pick 
-	document.getElementById("playerPick").innerHTML = player.pick 
-	document.getElementById("gameResult").innerHTML = gameResult;
-	}
-	var buttons = document.getElementsByClassName("pick-button"); 
-		for(var i = 0; i < buttons.length; i++) { 
-		buttons[i].style.visibility = 'hidden';  
-	}
-
-
-if (player.pick === "rock") { 
-	//if player chooses rock if (computer.pick === "scissors") { player.score++; gameResult = "Player wins!" } 
-	if (computer.pick === "paper") { computer.score++; gameResult = "Computer wins!" } 
-}
-if (player.pick === computer.pick) {gameResult = "tie!"} 
-else if (player.pick === "rock") {//if player chooses rock
-if (computer.pick === "scissors") {player.score++; gameResult = "Player wins!"} 
-else if (computer.pick === "paper") { computer.score++; gameResult = "Computer wins!"}
-} else if (player.pick === "paper") { //if player chooses paper
-if (computer.pick === "rock") { player.score++; gameResult = "Player wins!" } 
-else if (computer.pick === "scissors") { computer.score++; gameResult = "Computer wins!" }
-} else if (player.pick === "scissors") { //if player chooses scissors 
-if (computer.pick === "paper") { player.score++; gameResult = "Player wins!" } 
-else if (computer.pick === "rock") { computer.score++; gameResult = "Computer wins!" }
-}
-if ( (player.score >= 10) || (computer.score >=10) ) { 
-	//log the result 
-	if (player.score > computer.score) { 
-		document.getElementById("roundResult").innerHTML = "player wins the game!"} 
-		else { 
-	document.getElementById("roundResult").innerHTML = "computer wins the game!"}
-
- //hide buttons
-var buttons = document.getElementsByClassName("pick-button");
-  for(var i = 0; i < buttons.length; i++) {
-    buttons[i].style.visibility = 'hidden';
-  };
-}
+var checkResult = function(){
+    var gameResult;
+    if (player.pick === computer.pick) {
+	    gameResult = "Tie!";
+    }
+    else if (player.pick=='rock' && computer.pick=='paper') {
+	  computer.score++;
+	  gameResult="Computer wins!";
+    }
+    else if (player.pick=='rock' && computer.pick=='scissors') {
+	  player.score++;
+	  gameResult=player.name + " wins!";
+    }
+    else if (player.pick=='paper' && computer.pick=='rock') {
+	  player.score++;
+	  gameResult=player.name + " wins!";
+    }
+    else if (player.pick=='paper' && computer.pick=='scissors') {
+	  computer.score++;
+	  gameResult="Computer wins!";
+    }
+    else if (player.pick=='scissors' && computer.pick=='rock') {
+	  computer.score++;
+	  gameResult="Computer wins!";
+    }
+    else if (player.pick=='scissors' && computer.pick=='paper') {
+	  player.score++;
+	  gameResult=player.name + " wins!";
+    };
+    document.getElementById("playerPick").innerHTML = player.pick;
+    document.getElementById("computerPick").innerHTML = computer.pick;
+    document.getElementById("gameResult").innerHTML = gameResult;
+    document.getElementById("playerScore").innerHTML = player.score;
+    document.getElementById("computerScore").innerHTML = computer.score;
+};
